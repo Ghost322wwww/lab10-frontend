@@ -11,27 +11,43 @@ const ArticleDetail = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`${api.uri}/articles/${id}`)
-      .then(res => setArticle(res.data))
-      .catch(err => console.error('Error fetching article detail:', err))
+    axios
+      .get(`${api.uri}/articles/${id}`)
+      .then((res) => setArticle(res.data))
+      .catch((err) => console.error('Error fetching article detail:', err))
       .finally(() => setLoading(false));
   }, [id]);
 
   if (loading) {
-    return <Spin indicator={<LoadingOutlined style={{ fontSize: 48 }} spin />} />;
+    return (
+      <div style={{ textAlign: 'center', marginTop: '10%' }}>
+        <Spin indicator={<LoadingOutlined style={{ fontSize: 48 }} spin />} />
+      </div>
+    );
   }
 
   if (!article) {
-    return <div>Article not found.</div>;
+    return <div style={{ textAlign: 'center' }}>Article not found.</div>;
   }
 
   return (
-    <Card title={article.title} bordered style={{ width: '60%', margin: 'auto' }}>
-      <p><strong>ID:</strong> {article.id}</p>
-      <p><strong>Content:</strong> {article.alltext}</p>
-      {article.summary && <p><strong>Summary:</strong> {article.summary}</p>}
-      {article.datecreated && <p><strong>Created:</strong> {article.datecreated}</p>}
-    </Card>
+    <div style={{ display: 'flex', justifyContent: 'center', marginTop: 40 }}>
+      <Card
+        title={article.title}
+        bordered
+        style={{
+          width: '100%',
+          maxWidth: 600,
+          boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
+          borderRadius: 10,
+        }}
+      >
+        <p><strong>ID:</strong> {article.id}</p>
+        <p><strong>Content:</strong> {article.alltext}</p>
+        {article.summary && <p><strong>Summary:</strong> {article.summary}</p>}
+        {article.datecreated && <p><strong>Created:</strong> {article.datecreated}</p>}
+      </Card>
+    </div>
   );
 };
 
