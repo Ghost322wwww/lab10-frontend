@@ -17,11 +17,10 @@ function App() {
     <Router>
       <Layout style={{ minHeight: '100vh', background: '#fff' }}>
         <Navbar />
-
         <Content
           style={{
             maxWidth: 1200,
-            margin: '20px auto',
+            margin: '0 auto',
             padding: '20px',
             background: '#fff',
           }}

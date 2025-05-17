@@ -20,7 +20,7 @@ const ArticleDetail = () => {
 
   if (loading) {
     return (
-      <div style={{ textAlign: 'center', marginTop: '10%' }}>
+      <div style={{ height: '80vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <Spin indicator={<LoadingOutlined style={{ fontSize: 48 }} spin />} />
       </div>
     );
@@ -31,7 +31,15 @@ const ArticleDetail = () => {
   }
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', marginTop: 40 }}>
+    <div
+      style={{
+        minHeight: '80vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 20,
+      }}
+    >
       <Card
         title={article.title}
         bordered
@@ -45,7 +53,9 @@ const ArticleDetail = () => {
         <p><strong>ID:</strong> {article.id}</p>
         <p><strong>Content:</strong> {article.alltext}</p>
         {article.summary && <p><strong>Summary:</strong> {article.summary}</p>}
-        {article.datecreated && <p><strong>Created:</strong> {article.datecreated}</p>}
+        {article.datecreated && (
+          <p><strong>Created:</strong> {new Date(article.datecreated).toLocaleString()}</p>
+        )}
       </Card>
     </div>
   );
